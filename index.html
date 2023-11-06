@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Nível de Herói</title>
+</head>
+<body>
+
+<h1> Desafio de Herói </h1>
+<h3 id="nome"></h3>
+
+<p id="xp"> Seu nível de XP é 0 </p>
+<p id="medalha"> Sua medalha é Ramelão </p>
+<p id="vitorias"> Vitórias </p>
+<p id="derrotas"> Derrotas </p>
+<p id="rankadas"></p>
+
+<button type="button" id="batalhar" onclick="batalhar()"> Batalhar </button>
+
+</body>
+
+<script type="text/javascript">
+	
+	var heroi = "";
+	var xp = 0;
+	var medalha, rankeadas;
+	var vitoria = 0;
+	var derrota = 0;
+	function nivelHeroi(){
+		heroi = prompt(" Qual é o nome do seu herói ");
+		if(heroi != ""){
+			window.alert(
+				" Olá "+heroi+", seja bem vindo ao Desafio de Herói :} "
+			);
+		}else{
+			heroi = " O incrível Ramelão "
+		}
+		window.alert(
+			heroi+", seu XP é "+xp+", você deve batalhar ;} "
+		);
+		document.getElementById("nome").innerHTML = " Herói "+heroi;
+    }
+    nivelHeroi();
+
+	function batalhar(){
+		if(xp != 101){
+			xp += 1;
+			let reusltado = Math.floor(Math.random() * 2);
+			if(reusltado != 0){
+				window.alert(" GANHOU! :}");
+				vitoria += 1;
+			}else{
+				window.alert(" PERDEU! :{");
+				derrota += 1;
+			}
+			rankeadas = vitoria - derrota;
+		}else if(xp == 101){
+				var desligaBotao = document.getElementById("batalhar");
+				desligaBotao.disabled = true;
+				window.alert(`O Herói tem de saldo de ${rankeadas} está no nível de ${xp}`);
+				document.getElementById("rankadas").innerHTML = " Seu saldo de rankadas é "+(vitoria - derrota);
+		}
+		switch (xp) {
+		  case 1:
+		  	medalha = "Ramelão";
+		  	break;
+		  case 10:
+		    medalha = "Tome Ferro";
+		    break;
+		  case 11:
+		    medalha = "Bronze";
+		    break;
+		  case 21:
+		    medalha = "Prata";
+		    break;
+		  case 51:
+		    medalha = "Ouro";
+		    break;
+		  case 81:
+		    medalha = "Diamante";
+		    break;
+		  case 91:
+		    medalha = "Lendário";
+		    break;
+		  case  101:
+		    medalha = "Imortal";
+		  	break;
+		  default:
+		  	medalha = medalha;
+		}
+		document.getElementById("xp").innerHTML = " Seu nível de XP é "+xp;
+		document.getElementById("medalha").innerHTML = " Sua medalha é "+medalha;
+		document.getElementById('vitorias').innerHTML = " Vitórias: "+vitoria;
+		document.getElementById('derrotas').innerHTML = " Derrotas: "+derrota;
+	}
+
+</script>
+
+</html>
